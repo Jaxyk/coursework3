@@ -3,7 +3,6 @@ import hashlib
 import hmac
 from typing import Union
 
-
 from flask import current_app
 
 
