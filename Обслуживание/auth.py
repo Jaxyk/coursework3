@@ -28,7 +28,7 @@ class AuthService():
             now = datetime.datetime.utcnow()
             min30 = now + datetime.timedelta(minutes=30)
             data['exp'] = calendar.timegm(min30.timetuple())
-            access_token = jwt.encode(data, key=JWT_SECRET, algorithm=JWT_ALGORITHM)
+            data = jwt.decode(jwt=refresh_token, key=JWT_SECRET, algorithms=[JWT_ALGORITHM])
 
             days130 = now + datetime.timedelta(days=130)
             data['exp'] = calendar.timegm(days130.timetuple())
