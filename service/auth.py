@@ -50,12 +50,12 @@ class AuthService():
 
             now = datetime.datetime.utcnow()
             data['exp'] = calendar.timegm(now.timetuple())
-            access_token = jwt.encode(data, JWT_SECRET, algorithm=JWT_ALGORITHM)
+            data = jwt.decode(jwt=refresh_token, key=JWT_SECRET, algorithms=[JWT_ALGORITHM])
 
             return {'access_token': access_token}
 
     def approve_refresh_token(self, refresh_token):
-        data = jwt.dencode(jwt=refresh_token, key=JWT_SECRET, algorithm=[JWT_ALGORITHM] )
+        data = jwt.decode(jwt=refresh_token, key=JWT_SECRET, algorithms=[JWT_ALGORITHM] )
         email = data.get("email")
         return self.generate_tokens(email, None, is_refresh=True)
 
