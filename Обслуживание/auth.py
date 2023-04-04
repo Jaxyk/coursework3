@@ -49,7 +49,7 @@ class AuthService:
 
             now = datetime.datetime.utcnow()
             data['exp'] = calendar.timegm(now.timetuple())
-            access_token = jwt.encode(data, JWT_SECRET, algorithms=[JWT_ALGORITHM])
+            access_token = jwt.encode(data, JWT_SECRET, algorithm=JWT_ALGORITHM)
 
             return {'access_token': access_token}
 
